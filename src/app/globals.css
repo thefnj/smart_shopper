@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f4f6f3;
+  --surface: #ffffff;
+  --ink: #16231d;
+  --muted: #5d6b63;
+  --line: #d6ddd7;
+  --accent: #1e6b4e;
+  --accent-ink: #ffffff;
+  --accent-soft: #e3f0e9;
+  --review: #8a5a00;
+  --review-soft: #fbf1d9;
+  --danger: #9c3a2a;
+  --danger-soft: #f9e3df;
+  --ok: #1e6b4e;
+  --radius: 10px;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-review: var(--review);
+  --color-review-soft: var(--review-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html { background: var(--bg); color: var(--ink); -webkit-text-size-adjust: 100%; }
+body { font-family: var(--font-sans); font-size: 16px; line-height: 1.45; }
+
+.num { font-variant-numeric: tabular-nums; }
+
+/* Receipt lines read like a till roll: description, dotted leader, right-aligned price. */
+.receipt-row { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 0.5rem; }
+.receipt-row .leader { flex: 1; border-bottom: 2px dotted var(--line); transform: translateY(-0.35em); margin: 0 0.35rem; }
+
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; min-height: 44px; padding: 0 1.1rem; border-radius: var(--radius); font-weight: 600; border: 1px solid transparent; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { background: #185a41; }
+.btn-secondary { background: var(--surface); color: var(--ink); border-color: var(--line); }
+.btn-secondary:hover { background: var(--bg); }
+.btn-danger { background: var(--surface); color: var(--danger); border-color: var(--danger); }
+.btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visible { outline: 3px solid #7fb69f; outline-offset: 2px; }
+
+.field { display: grid; gap: 0.3rem; }
+.field label { font-size: 0.9rem; color: var(--muted); }
+.field input, .field select, .field textarea { min-height: 44px; padding: 0.55rem 0.75rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); font-size: 16px; width: 100%; }
+.field .hint { font-size: 0.85rem; color: var(--muted); }
+.field .error { font-size: 0.85rem; color: var(--danger); }
+
+.badge { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8rem; font-weight: 600; padding: 0.15rem 0.55rem; border-radius: 999px; }
+.badge-review { background: var(--review-soft); color: var(--review); }
+.badge-ok { background: var(--accent-soft); color: var(--ok); }
+.badge-draft { background: #eceeeb; color: var(--muted); }
+.badge-danger { background: var(--danger-soft); color: var(--danger); }
+
+.nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 56px; font-size: 0.72rem; font-weight: 600; color: var(--muted); }
+.nav-item[aria-current="page"] { color: var(--accent); }
+@media (min-width: 900px) {
+  .nav-item { flex-direction: row; justify-content: flex-start; gap: 0.6rem; font-size: 1rem; min-height: 44px; padding: 0 0.75rem; border-radius: var(--radius); }
+  .nav-item[aria-current="page"] { background: var(--accent-soft); }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
