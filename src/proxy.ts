@@ -23,6 +23,11 @@ export async function proxy(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser();
   const path = request.nextUrl.pathname;
+  if (path === "/login" && request.nextUrl.searchParams.has("code")) {
+  const url = request.nextUrl.clone();
+  url.pathname = "/auth/callback";
+  return NextResponse.redirect(url);
+}
   const isPublic = PUBLIC_PATHS.some((p) => path.startsWith(p));
 
   if (!user && !isPublic) {
